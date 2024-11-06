@@ -1,6 +1,12 @@
-import { ISbStories } from "storyblok-js-client";
-import { storyblokApi, getStory, excludedStorySlugs } from "@/lib/storyblok";
+import type { ISbStories } from "storyblok-js-client";
+import {
+  storyblokApi,
+  getStory,
+  excludedStorySlugs,
+  checkForGlobalSlug,
+} from "@/lib/storyblok";
 import SbSections from "@/configs/sb-component";
+import { redirect } from "next/navigation";
 
 export async function generateStaticParams() {
   const { data } = (await storyblokApi.get("cdn/links/", {
@@ -29,14 +35,14 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
-  const slug = params?.slug ? params.slug.join("/") : "home";
+  const slug = params.slug.join("/");
+  if (checkForGlobalSlug(slug)) redirect("/");
   const { data } = await getStory(slug);
 
   const components = data.story.content.body;
 
   return (
-    <main className="flex h-screen flex-col items-center p-20">
-      <h1 className="text-center text-xl">Storyblok Demo</h1>
+    <main className="h-fit min-h-screen w-full">
       <SbSections components={components} />
     </main>
   );

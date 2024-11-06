@@ -1,6 +1,8 @@
 import { env } from "@/env";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokBridgeLoader from "@storyblok/react/bridge-loader";
+import { ThemeProvider } from "@/components/providers";
+import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
@@ -23,7 +25,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <div className="fixed right-4 top-4">
+            <ThemeSwitcher />
+          </div>
+        </ThemeProvider>
+      </body>
       <StoryblokBridgeLoader options={{}} />
     </html>
   );

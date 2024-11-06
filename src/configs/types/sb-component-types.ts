@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
-import type { TeaserProps } from "@/components/Teaser";
+import type { TeaserProps, GridProps } from "@/components/sections/types";
 
-export type SbComponentProps = TeaserProps;
+export type SbComponentProps = TeaserProps | GridProps;
 
 export type SbComponentKey = SbComponentProps["component"];
 

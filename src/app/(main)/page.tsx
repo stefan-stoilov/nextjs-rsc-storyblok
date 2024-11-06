@@ -7,8 +7,7 @@ export default async function Home() {
   const components = data.story.content.body;
 
   return (
-    <main className="flex h-screen flex-col items-center p-20">
-      <h1 className="text-center text-xl">Storyblok Demo</h1>
+    <main className="h-fit min-h-screen w-full">
       <SbSections components={components} />
     </main>
   );
