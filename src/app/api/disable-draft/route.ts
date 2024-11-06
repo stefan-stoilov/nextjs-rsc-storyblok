@@ -1,6 +1,7 @@
 import { cookies, draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
+import { checkForGlobalSlug } from "@/lib/storyblok";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
@@ -16,5 +17,5 @@ export async function GET(req: NextRequest) {
       });
     });
 
-  redirect(`/${slug}`);
+  redirect(checkForGlobalSlug(slug) ? "/" : `/${slug}`);
 }
