@@ -10,7 +10,7 @@ export type GridProps = {
 export const Grid = ({ columns, ...props }: GridProps & SbBlokData) => {
   return (
     <section {...storyblokEditable({ ...props })} className="w-full">
-      <ul className="container grid grid-cols-3 gap-12">
+      <ul className="container grid gap-12 md:grid-cols-2 lg:grid-cols-3">
         {columns?.map((col) => <Feature key={col._uid} {...col} />)}
       </ul>
     </section>

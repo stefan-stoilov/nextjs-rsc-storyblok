@@ -33,7 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <div className="fixed right-4 top-4">
+          <div className="fixed bottom-4 right-4 md:bottom-[unset] md:top-4">
             <ThemeSwitcher />
           </div>
         </ThemeProvider>
